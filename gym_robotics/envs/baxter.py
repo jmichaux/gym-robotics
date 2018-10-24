@@ -111,6 +111,7 @@ class Baxter(Manipulator):
             arm (str): 'left' or 'right'
             pose (list): List specifying end effector pose
         """
+        joint_positions = self.inverse_kinematics(arm, pose)
         if self.backend == 'pybullet':
             pass
         elif self.backed == 'mujoco':
@@ -191,18 +192,43 @@ class Baxter(Manipulator):
             pass                
         return
 
-    def forward_kinematics(self, arm):
+    def forward_kinematics(self, arm, joint_positions):
         """
         Calculate forward kinematics
+
+        Args:
+            arm (str): 'left' or 'right'
+            joint_positions (list or ndarray): Joint positions
+
+        Returns:
+            pose (list): Pose of the end effector
         """
+        if arm == 'left':
+            pose = self.left_arm.kin.forward_kinematics(joint_positions)
+        elif arm == 'right':
+            pose = self.right_arm.kin.forward_kinematics(joint_positions)
+        else:
+            raise ValueError("Must specify arm")
+        return pose
 
-        return
-
-    def inverse_kinematics(self, arm):
+    def inverse_kinematics(self, arm, pose):
         """
         Calculate inverse kinematics
+
+        Args:
+            arm (str): 'left' or 'right'
+            pose (list): Pose of the end effector
+
+        Returns:
+            joint_positions (list or ndarray): Joint positions
         """
-        return
+        if arm == 'left':
+            joint_positions = self.left_arm.kin.inverse_kinematics(joint_positions)
+        elif arm == 'right':
+            joint_positions = self.right_arm.kin.inverse_kinematics(joint_positions)
+        else:
+            raise ValueError("Must specify arm")        
+        return joint_positions
 
     def sample_pose(self):
         """
