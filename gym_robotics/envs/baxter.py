@@ -67,7 +67,7 @@ class Baxter(Manipulator):
         self.right_arm.kin = Kinematics(self.urdf, 'torso_t0', 'right_endpoint')
         return
 
-    def set_joint_positions(self):
+    def set_joint_positions(self, arm, joint_positions):
         """
         Set joint positions
         """
@@ -79,7 +79,7 @@ class Baxter(Manipulator):
             pass        
         return
 
-    def set_joint_velocities(self):
+    def set_joint_velocities(self, arm, joint_velocities):
         """
         Set joint velocities
         """
@@ -91,7 +91,7 @@ class Baxter(Manipulator):
             pass        
         return
 
-    def set_joint_torques(self):
+    def set_joint_torques(self, arm, joint_torques):
         """
         Set joint torques
         """
@@ -120,7 +120,7 @@ class Baxter(Manipulator):
             pass        
         return
 
-    def get_ee_pose(self):
+    def get_ee_pose(self, arm):
         """
         Get current end effector pose
         """
@@ -132,7 +132,7 @@ class Baxter(Manipulator):
             pass        
         return
 
-    def get_ee_position(self):
+    def get_ee_position(self, arm):
         """
         Get current end effector position
         """
@@ -144,7 +144,7 @@ class Baxter(Manipulator):
             pass        
         return
 
-    def get_ee_orientation(self):
+    def get_ee_orientation(self, arm):
         """
         Get current end effector orientation
         """
@@ -156,7 +156,7 @@ class Baxter(Manipulator):
             pass        
         return
 
-    def get_joint_positions(self):
+    def get_joint_positions(self, arm):
         """
         Get current joint positions
         """
@@ -168,7 +168,7 @@ class Baxter(Manipulator):
             pass        
         return
 
-    def get_joint_velocities(self):
+    def get_joint_velocities(self, arm):
         """
         Get current joint velocities
         """
@@ -180,7 +180,7 @@ class Baxter(Manipulator):
             pass                
         return
 
-    def get_joint_torques(self):
+    def get_joint_torques(self, arm):
         """
         Get current joint torques
         """
@@ -230,13 +230,13 @@ class Baxter(Manipulator):
             raise ValueError("Must specify arm")        
         return joint_positions
 
-    def sample_pose(self):
+    def sample_pose(self, arm):
         """
         Sample random end end-effector pose
         """
         return
 
-    def sample_joint_positions(self):
+    def sample_joint_positions(self, arm):
         """
         Sample random joint positions
         """
