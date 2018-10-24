@@ -91,4 +91,4 @@ class BaseEnv(gym.GoalEnv):
         """A custom callback that is called after stepping the simulation. Can be used
         to enforce additional constraints on the simulation state.
         """
-pass
+        pass
