@@ -39,6 +39,11 @@ class BaseEnv(gym.GoalEnv):
         """
         raise NotImplementedError()
 
+    def initial_setup(self):
+        """Initial environment setup
+        """
+        raise NotImplementedError()
+
     def _get_obs(self):
         """Returns the observation.
         """
